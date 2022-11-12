@@ -7,24 +7,33 @@ const password2 = 'albumin555'
 const password3 = 'knopkazapuskaraket'
 
 function getPasswordChecker (password) {
-    return checkPassword(password)
-}
-
-function checkPassword(password) {
-    rl.question('Введите пароль: ',(answer) => {  
-    console.log('Вы ввели:', answer);
-    if (password == answer) {
-        console.log('Вы ввели верный парооль!')
-        rl.close();
-        return true        
-    } else {
-        console.log('Вы ввели не верный пароль, попробуйте еще раз.')
-        getPasswordChecker (password)
-        return false
+    console.log(`пароль: ${password}`)
+    return function check(answer) {
+        console.log(`пользовательский ввод: ${answer}`)
+        if (password == answer) {
+            console.log('Вы ввели верный парооль!')
+            return true        
+        } else {
+            console.log('Вы ввели не верный пароль, попробуйте еще раз.')
+            getPasswordChecker (password)
+            return false
+        }
     }
-    })
+    
 }
 
-getPasswordChecker(password1)
-// getPasswordChecker(password2)
-// getPasswordChecker(password3)
+let p = getPasswordChecker(password1)
+p('партизаны не сдаются')
+p('долой php')
+p('не вешать нос.гардемарины.com')
+p('klever2000')
+
+// let p2 = getPasswordChecker(password2)
+// p2('гарандапогала')
+// p2('Пырышки-пупырышки')
+// p2('albumin555')
+
+// let p3 = getPasswordChecker(password3)
+// p3('gfggiyf')
+// p3('knopkazapuskaraket')
+
