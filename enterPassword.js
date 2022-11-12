@@ -7,20 +7,22 @@ const password2 = 'albumin555'
 const password3 = 'knopkazapuskaraket'
 
 function getPasswordChecker (password) {
-    rl.question('Введите пароль: ', checkPassword)  
+    return checkPassword(password)
 }
 
-function checkPassword(answer) {
+function checkPassword(password) {
+    rl.question('Введите пароль: ',(answer) => {  
     console.log('Вы ввели:', answer);
-    if (password1 == answer) {
+    if (password == answer) {
         console.log('Вы ввели верный парооль!')
         rl.close();
         return true        
     } else {
         console.log('Вы ввели не верный пароль, попробуйте еще раз.')
-        getPasswordChecker (password1)
+        getPasswordChecker (password)
         return false
     }
+    })
 }
 
 getPasswordChecker(password1)
